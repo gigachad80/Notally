@@ -313,6 +313,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+private fun exportToMarkdown() {
+        val baseNote = model.actionMode.getFirstNote()
+        lifecycleScope.launch {
+            val file = model.getMarkdownFile(baseNote)
+            showFileOptionsDialog(file, "text/markdown")
+        }
+    }
+
 
     private fun showFileOptionsDialog(file: File, mimeType: String) {
         val uri = FileProvider.getUriForFile(this, "${packageName}.provider", file)
